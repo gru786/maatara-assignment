@@ -30,8 +30,6 @@ void main() {
   );
 }
 
-
-
 void callbackDispatcher() {
   Workmanager().executeTask((task, inputData) {
     if (task == 'sync_notes') {
@@ -47,8 +45,6 @@ Future<void> syncNotesWithRemoteServer() async {
     return;
   }
 
-
-
   final receivePort = ReceivePort();
   // Spawn a new isolate and pass the ReceivePort's SendPort to it
   Isolate.spawn(backgroundProcess, receivePort.sendPort);
@@ -58,7 +54,6 @@ Future<void> syncNotesWithRemoteServer() async {
     log('Received message from isolate: $message');
     receivePort.close(); // Close the receive port when done
   });
-  
 }
 
 // This function will run in the isolate
@@ -66,12 +61,9 @@ void backgroundProcess(SendPort sendPort) {
   // Perform task
   String result = 'syncing notes';
 
-
   // Send the result back to the main isolate using the SendPort
   sendPort.send(result);
 }
-
-
 
 checkBioMetric() async {
   final LocalAuthentication auth = LocalAuthentication();
